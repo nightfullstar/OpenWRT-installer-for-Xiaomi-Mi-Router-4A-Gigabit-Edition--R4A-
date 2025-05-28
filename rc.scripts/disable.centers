@@ -1,0 +1,19 @@
+#name: Выключить datacenter и plugincenter
+startme() {
+/etc/init.d/plugincenter stop
+/etc/init.d/plugincenter disable
+/etc/init.d/datacenter stop
+/etc/init.d/datacenter disable
+}
+removeme() {
+rm /etc/rc.scripts/disable.centers
+/etc/init.d/datacenter start
+/etc/init.d/datacenter enable
+/etc/init.d/plugincenter start
+/etc/init.d/plugincenter enable
+}
+case "$1" in
+start) startme ;;
+remove) removeme ;;
+*) startme ;;
+esac

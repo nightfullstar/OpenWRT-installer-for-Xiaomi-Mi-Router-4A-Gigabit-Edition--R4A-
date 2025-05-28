@@ -1,0 +1,2 @@
+sh /etc/rc.scripts/disable.hwnat
+

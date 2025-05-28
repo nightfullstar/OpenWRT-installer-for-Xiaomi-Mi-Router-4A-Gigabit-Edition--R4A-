@@ -1,0 +1,19 @@
+#name: Включить возможность IPTV
+startme() {
+switch reg w 2214 10002
+switch vlan set 0 1 11010011
+switch vlan set 1 2 00101101
+switch clear
+}
+removeme() {
+rm /etc/rc.scripts/rc.iptv
+switch reg w 2214 10001
+switch vlan set 0 1 11110011
+switch vlan set 1 2 00001101
+switch clear
+}
+case "$1" in
+start) startme ;;
+remove) removeme ;;
+*) startme ;;
+esac

@@ -1,0 +1,2 @@
+/tmp/:install.disable.hwnat
+/etc/rc.scripts/:disable.hwnat

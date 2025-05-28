@@ -1,0 +1,14 @@
+#name: Выключить HWNAT, роутер будет перезагружен
+startme() {
+/etc/init.d/hwnat disable
+}
+removeme() {
+rm /etc/rc.scripts/disable.hwnat
+/etc/init.d/hwnat enable
+}
+case "$1" in
+start) startme ;;
+remove) removeme ;;
+*) startme ;;
+esac
+reboot
