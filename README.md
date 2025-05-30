@@ -122,6 +122,47 @@ Router-Installer/
    - **Linux**: `./installer.sh`
    - **Windows**: Double-click `Installer.bat`
 
+### Advanced Authentication Options
+
+The tool provides several authentication methods for cases where standard login fails:
+
+#### Manual Token Input
+If authentication fails due to incorrect password or other issues, the tool will automatically offer a **manual token fallback**:
+
+1. **Automatic Fallback**: When authentication fails, you'll be prompted to enter a session token manually
+2. **Skip Authentication**: Use `--skip-auth` to bypass automatic authentication entirely
+3. **Pre-saved Token**: Use `--token <TOKEN>` to use a previously obtained session token
+
+#### Command Line Options
+
+```bash
+# Normal usage (default)
+python scripts/main.py
+
+# Use a saved session token
+python scripts/main.py --token abc123def456...
+
+# Skip authentication and enter token manually  
+python scripts/main.py --skip-auth
+```
+
+#### How to Obtain Session Token Manually
+
+If you need to get a session token manually for future use:
+
+1. Open router web interface in browser (`http://192.168.31.1`)
+2. Login with admin credentials
+3. Open browser Developer Tools (F12)
+4. Go to Network tab and refresh the page
+5. Look for POST request to `/api/xqsystem/login`
+6. In the response, find the `"token":"..."` value
+7. Copy this token for use with `--token` option
+
+This token-based approach is especially useful for:
+- **Automation**: Skip manual password entry in scripts
+- **Troubleshooting**: Bypass authentication issues
+- **Development**: Test the tool without repeated logins
+
 ### Menu Options
 
 #### 1. Enable Telnet and FTP Servers
